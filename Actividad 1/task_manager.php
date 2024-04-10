@@ -1,7 +1,7 @@
 <?php
 
 function eliminar_errores() {
-error_reporting(0);		//Nos elimina los warning de php para que el usuario no los vea
+error_reporting(0);	
 }
 
 eliminar_errores();
@@ -11,7 +11,7 @@ function comprovarCLI() {
 	if (php_sapi_name() != 'cli') {
         	$aviso_cli = "Aquest script només es pot executar des del CLI.\n";
 	}
-	return $aviso_cli; //Es interesante que las funciones retornen algo como una frase o valor y luego decidir si mostrarlo o no
+	return $aviso_cli; 
 }
 
 if( $aviso_cli = comprovarCLI() ) { echo $aviso_cli; return true;}
@@ -29,11 +29,12 @@ echo "  help				Muestra este mensaje de ayuda\n";
 
 function comprovar_parametros($argc) {
 if ($argc<2) {
-	return help();
+	help();
+	exit();
 }
 }
 
-comprovar_parametros($argc); //Comprovamos la cantidad de argumentos que nos han puesto
+comprovar_parametros($argc);
 
 $action = trim( $argv[1] );
 
@@ -47,16 +48,16 @@ function connectDatabase() {
 	$username = "task_manager";
 	$password = "mysql12345";
 	$dbname = "task";
-	$con = new mysqli($servername, $username, $password, $dbname); //Las variiables solo afectan en la función
+	$con = new mysqli($servername, $username, $password, $dbname); 
 	if ($con->connect_error) {
 		die('Error de Conexión (' . $con->connect_errno . ') '. $con->connect_error);
 	}
 	else{
-		$con->close(); //Abriremos y cerraremos conexion con la base de datos para hacer las acciones.
+		$con->close(); 
 	}
 }
 
-connectDatabase(); //Aquí pruebo la conexión a la base de datos si no va me lo dice y se cierra
+connectDatabase(); 
 
 function add_to_bd($argv) {
 	$servername = "localhost";
@@ -64,10 +65,8 @@ function add_to_bd($argv) {
         $password = "mysql12345";
         $dbname = "task";
         $con = new mysqli($servername, $username, $password, $dbname);
-	$titulo = $argv[2];             //OJOOO ESTO LO PUEDO HACER PORQUE A LA FUNCIÓN LE PASO LA VARIABLE $ARGV
+	$titulo = $argv[2];
 	$descripción = $argv[3];
-	//var_dump($con);
-	//die() ASI PODEMOS PROBAR LAS COSAS QUE VAMOS HACIENDO.
 	mysqli_query($con, "INSERT INTO task.Todas (Titulo, Descripción, Estado) VALUES ('$titulo', '$descripción', 'incompleto')");
 	echo "Tarea añadida.\n";
 	$con->close();
@@ -80,7 +79,7 @@ function read_to_bd() {
 	$dbname = "task";
 	$con = new mysqli($servername, $username, $password, $dbname);
 	$result = mysqli_query($con,"SELECT * FROM task.Todas");
-	while ($row = $result->fetch_assoc()) {   //ANTES DE NADA PROBAR A PRINTAR ROW A VER QUE TENEMOS
+	while ($row = $result->fetch_assoc()) {   
 		echo $row['task_id'] , ' --- ' , $row['Titulo'] , ' --- ' , $row['Descripción'] ,' --- ', $row['Estado'], "\n";
 	}
 	$con->close();
@@ -104,7 +103,7 @@ function delete_to_bd($argv) {
 	$password = "mysql12345";
 	$dbname = "task";
 	$con = new mysqli($servername, $username, $password, $dbname);
-        $id = $argv[2]; // if $id = 'all' que lo borre todo estaría bien
+        $id = $argv[2];
 	mysqli_query($con,"DELETE FROM task.Todas WHERE task_id = $id");
 	echo "Tarea eliminada.\n";
 	$con->close();
@@ -124,8 +123,7 @@ switch ($action) {
 		delete_to_bd($argv);
 		break;
 	default:
-		help();
-
+		help(); 
 }
 
 ?>
