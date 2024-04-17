@@ -61,10 +61,10 @@ connectDatabase();
 
 function add_to_bd($argv) {
 	$servername = "localhost";
-        $username = "task_manager";
-        $password = "mysql12345";
-        $dbname = "task";
-        $con = new mysqli($servername, $username, $password, $dbname);
+    $username = "task_manager";
+    $password = "mysql12345";
+    $dbname = "task";
+    $con = new mysqli($servername, $username, $password, $dbname);
 	$titulo = $argv[2];
 	$descripción = $argv[3];
 	mysqli_query($con, "INSERT INTO task.Todas (Titulo, Descripción, Estado) VALUES ('$titulo', '$descripción', 'incompleto')");
@@ -85,7 +85,7 @@ function read_to_bd() {
 	$con->close();
 }
 
-function complete_to_bd($argv) {
+function complete_to_bd($argv) { 
 	$servername = "localhost";
 	$username = "task_manager";
 	$password = "mysql12345";
@@ -103,7 +103,7 @@ function delete_to_bd($argv) {
 	$password = "mysql12345";
 	$dbname = "task";
 	$con = new mysqli($servername, $username, $password, $dbname);
-        $id = $argv[2];
+    $id = $argv[2];
 	mysqli_query($con,"DELETE FROM task.Todas WHERE task_id = $id");
 	echo "Tarea eliminada.\n";
 	$con->close();

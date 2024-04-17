@@ -1,28 +1,21 @@
 <?php
 
-function comprovar_acc_get() {
-	$options = getopt('o:i::t::d::', ['option:', 'id::', 'tarea::', 'descripción::']);
-	var_dump($options);
-	if (isset($options['o'])) {
-		$value = $options['o'];
-		return $value; #Queremos que retorne el valor para poder usarlo en el swich
-	}
-	else{
-		return help();
-	}
-}
+include 'funciones.php'; #Al declararlo aquí todas ya se leen entre ellas no hace falta hacerlo de nuevo
+include 'mensajes.php';
+include 'constantes.php';
 
-function change_value () {
-	$servername = "localhost";
-	$username = "task_manager";
-	$password = "mysql12345";
-	$dbname = "task";
-	$con = new mysqli($servername, $username, $password, $dbname);
-	$titulo = $options['t'];
-	$descripción = $argv[3];
-	mysqli_query($con, "INSERT INTO task.Todas (Titulo, Descripción, Estado) VALUES ('$titulo', '$descripción', 'incompleto')");
-	echo "Tarea añadida.\n";
-	$con->close();
-}
+eliminar_errores();
+
+if( $aviso_cli = comprovarCLI() ) { echo $aviso_cli; return true;}
+
+connectDatabase(); 
+
+$options = confi_getopt(); #Lo quiero así porque estas opciones las voy a pasar mas de una vez a diferentes cosas
+
+$value = comprovar_acc_get($options);
+
+print ($value)
+
+#Ahora quiero continuar con el tema del switch. Entrando con el $valor y luego tengo que cambiar la función de add, save, show para utilizar los parámetros -i,-t ...
 
 ?>	
