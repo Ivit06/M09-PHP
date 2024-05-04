@@ -14,11 +14,6 @@ $options = confi_getopt(); #Lo quiero así porque estas opciones las voy a pasar
 
 $action = comprobar_acc_get($options); #Nos quedamos con la acción para poder entrar en el switch.
 
-const ACTION_1= "add";
-const ACTION_2= "show";
-const ACTION_3= "complete";
-const ACTION_4= "delete";
-
 switch ($action) {
 	case ACTION_1:
 		add_to_bd($options);
