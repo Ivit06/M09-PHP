@@ -1,0 +1,29 @@
+mensajes:
+  help: |
+    No s'han proporcionat suficients arguments.
+    Uso: php task_manager_get.php (-o or --option)
+    Opciones:
+    " add (-t or --titulo) 'titulo' (-d or --descripción) 'descripción'    Añade una tarea
+    " show                                                                 Muestra todas las tareas
+    " complete (-i or --id) id.tarea                                       Marca una tarea como completada
+    " delete (-i or --id) id.tarea                                         Elimina una tarea
+    " help                                                                 Muestra este mensaje de ayuda
+
+
+  error:
+    parametro:  |
+      Estas utilizando más de un parámetro
+      Para determinar acción utilize -o or --option (NUNACA LAS DOS A LA VEZ)
+    cli: >  
+      Este script solo se puede ejecutar en cli.
+
+
+  tarea:
+    añadida: >
+      Tarea añadida.
+
+    completada: >
+      Tarea completada.
+
+    eliminada: >
+      Tarea eliminada.
