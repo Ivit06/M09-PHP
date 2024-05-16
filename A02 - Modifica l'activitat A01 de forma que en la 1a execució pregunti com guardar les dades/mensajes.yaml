@@ -9,21 +9,70 @@ mensajes:
     " delete (-i or --id) id.tarea                                         Elimina una tarea
     " help                                                                 Muestra este mensaje de ayuda
 
-
   error:
     parametro:  |
       Estas utilizando más de un parámetro
       Para determinar acción utilize -o or --option (NUNACA LAS DOS A LA VEZ)
     cli: >  
       Este script solo se puede ejecutar en cli.
-
+    conexión: >  
+      Error de conexión.
+    basedatos:
+      Error al abrir la base de datos.
+    leer:
+      Error al leer el contenido de la base de datos.
+    añadida: >
+      Error al añadir tarea.
+    completada: >
+      Error al completar tarea.
+    eliminada: >
+      Error al eliminar tarea.
+    almacenamiento: >
+      Metodo de almacenamiento no valido.
+    crearbd: >
+      Error al crear la base de datos MySQL:
+    selecbd: >
+      Error al seleccionar la base de datos MySQL:
+    creartab: >
+      Error al crear la tabla MySQL:
+    grantdbpriv: >
+      Error al dar privilegios al usuario.
+    crearusuario: >
+      Error al crear el usuario:
+    grantcreate: >
+      Error al otorgar privilegio de creación:
+    flushpriv: >
+      Error al aplicar privilegios:
 
   tarea:
     añadida: >
       Tarea añadida.
-
     completada: >
       Tarea completada.
-
     eliminada: >
       Tarea eliminada.
+
+  config:
+    primera: |
+      Es la primera vez que se ejecuta este script.
+      Por favor, elija un método de almacenamiento (MYSQL o SQLITE):
+    ingrese: >
+      Ingrese la información de conexión:
+    host: >
+      User Host:
+    user: >
+      User name:
+    passw: >
+      Password:
+    dbname: >
+      Database Name:
+    dbfile: >
+      Database File:
+    datosad: >
+      Introduce los datos del usuario root para poder generar los datos si no existen.
+    adminh: >
+      Admin Host:
+    adminu: >
+      Admin User:
+    adminp: >
+      Admin Password:
